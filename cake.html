@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dejaja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">케이커</div>
+
+    <nav>
+        <ul>
+            <li>상담하기</li>
+            <li>예약하기</li>
+            <li>마이페이지</li>
+        </ul>
+    </nav>
+
+    <div class="auth">
+        <a href="signup.html">회원가입</a> /
+        <a href="login.html">로그인</a>
+    </div>
+</header>
+
+<main>
+    <h1>Let's customize your cake 🍰</h1>
+
+    <section class="custom-section">
+        <div class="custom-box">
+
+            <!-- 케이크 -->
+            <div class="cake heart-cake" id="cake" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div id="lettering" class="lettering">Happy Day</div>
+            </div>
+
+            <!-- 옵션 -->
+            <div class="controls">
+
+                <label>케이크 시트</label>
+                <select>
+                    <option>기본</option>
+                    <option>초코</option>
+                    <option>바닐라</option>
+                </select>
+
+                <label>시트 모양</label>
+                <select>
+                    <option>원형</option>
+                    <option>하트</option>
+                    <option>반원</option>
+                    <option>사각형</option>
+                </select>
+
+                <label>크림 선택</label>
+                <select>
+                    <option>동물성 크림</option>
+                    <option>식물성 크림</option>
+                    <option>요거트 크림</option>
+                </select>
+
+                <label>레터링 입력</label>
+                <input type="text" id="letterInput" placeholder="문구 입력">
+                <button onclick="changeLetter()">적용하기</button>
+
+                <label>토핑 선택</label>
+                <div class="toppings">
+                    <span draggable="true" ondragstart="drag(event)">🍓</span>
+                    <span draggable="true" ondragstart="drag(event)">🧸</span>
+                    <span draggable="true" ondragstart="drag(event)">🎂</span>
+                    <span draggable="true" ondragstart="drag(event)">💖</span>
+                    <span draggable="true" ondragstart="drag(event)">⭐</span>
+                </div>
+
+                <button class="save-btn">이미지 저장하기</button>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.innerText);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+
+    const data = ev.dataTransfer.getData("text");
+    const topping = document.createElement("div");
+
+    topping.innerText = data;
+    topping.className = "dropped-item";
+    topping.style.left = (ev.offsetX - 15) + "px";
+    topping.style.top = (ev.offsetY - 15) + "px";
+
+    document.getElementById("cake").appendChild(topping);
+}
+
+function changeLetter() {
+    const text = document.getElementById("letterInput").value;
+    document.getElementById("lettering").innerText = text;
+}
+</script>
+
+</body>
+</html>

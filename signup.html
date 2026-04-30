@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="signup-container">
+    <h1>회원가입</h1>
+
+    <select id="memberType" onchange="changeForm()">
+        <option value="">회원 유형 선택</option>
+        <option value="customer">고객</option>
+        <option value="owner">사장님</option>
+    </select>
+
+    <form id="customerForm" class="hidden">
+        <input type="text" placeholder="이름">
+        <input type="text" placeholder="연락처">
+        <input type="date">
+
+        <div class="id-check">
+            <input type="text" placeholder="아이디">
+            <button type="button">중복확인</button>
+        </div>
+
+        <input type="password" placeholder="비밀번호">
+        <input type="text" placeholder="동네 설정">
+
+        <button type="submit" class="submit-btn">가입하기</button>
+    </form>
+
+    <form id="ownerForm" class="hidden">
+        <input type="text" placeholder="이름">
+        <input type="text" placeholder="사업자번호">
+
+        <div class="id-check">
+            <input type="text" placeholder="아이디">
+            <button type="button">중복확인</button>
+        </div>
+
+        <input type="password" placeholder="비밀번호">
+        <input type="text" placeholder="사업장 위치">
+        <input type="text" placeholder="연락처">
+
+        <button type="submit" class="submit-btn">가입하기</button>
+    </form>
+</div>
+
+<script>
+function changeForm() {
+    const type = document.getElementById("memberType").value;
+
+    document.getElementById("customerForm").style.display = "none";
+    document.getElementById("ownerForm").style.display = "none";
+
+    if(type === "customer"){
+        document.getElementById("customerForm").style.display = "flex";
+    }
+
+    if(type === "owner"){
+        document.getElementById("ownerForm").style.display = "flex";
+    }
+}
+</script>
+
+</body>
+</html>
